@@ -1,49 +1,17 @@
-import React, {Component} from 'react';
+const SpeechSynth = (props) => {
 
+  const synth = window.speechSynthesis;
 
-const SpeechSynthesis = window.SpeechSynthesis;
-const recognition = new SpeechSynthesis();
+  if(props.paraText.search('\n')) {
 
-let voices = [];
-
-
-class SpeechSynth extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      words: "Hi There you dancing bear."
-    }
   }
 
-  speak(){
-    if (SpeechSynthesis.speaking) {
-      console.error('speechSynthesis.speaking');
-      return;
-    }
-    if (this.state.words !== '') {
-      let utterThis = new SpeechSynthesisUtterance(this.state.words);
-      utterThis.onend = function (event) {
-      console.log('SpeechSynthesisUtterance.onend');
-      }
-    }
-    utterThis.onerror = function (event) {
-        console.error('SpeechSynthesisUtterance.onerror');
+  const paragraphDictation = new SpeechSynthesisUtterance(props.paraText);
 
-    }
-    SpeechSynthesis.speak(utterThis);
-  }
+  synth.speak(paragraphDictation);
 
+  return null;
 
-  render() {
-
-    return(
-      <p>I am speaking</p>
-    )
-  }
-
-  componentDidMount(){
-    speak();
-  }
+}
 
 export default SpeechSynth;

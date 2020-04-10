@@ -5,14 +5,13 @@ import Choices from "../component/Choices";
 
 const Story = require('inkjs').Story;
 
+
+
 class StoryContainer extends Component {
-
-
 
   constructor(props){
     super(props);
     this.state = {
-      paragraphWords: '',
       story: null,
       choiceIndex: -1
     }
