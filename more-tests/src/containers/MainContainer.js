@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import Speech from './Speech';
+import SpeechRec from './SpeechRec';
 
 class MainContainer extends Component {
 
@@ -7,7 +7,7 @@ class MainContainer extends Component {
   render(){
     return(
       <Fragment>
-        <Speech />
+        <SpeechRec />
       </Fragment>
     )
   }

@@ -12,7 +12,7 @@ recognition.lang = 'en-US'
 
 //------------------------COMPONENT-----------------------------
 
-class Speech extends Component {
+class SpeechRec extends Component {
 
   constructor() {
     super()
@@ -53,12 +53,12 @@ class Speech extends Component {
 
     let finalTranscript = ''
     recognition.onresult = event => {
-      let interimTranscript = ''
+      
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
-        else interimTranscript += transcript;
+
       }
       document.getElementById('final').innerHTML = finalTranscript
 
@@ -91,6 +91,7 @@ class Speech extends Component {
 
     return (
       <div style={container}>
+      Say - END MESSAGE - to submit
         <div id='final' style={final}></div>
       </div>
     )
@@ -102,7 +103,7 @@ class Speech extends Component {
 
 }
 
-export default Speech
+export default SpeechRec
 
 
 //-------------------------CSS------------------------------------
@@ -137,4 +138,4 @@ const styles = {
   }
 }
 
-const { container, button, interim, final } = styles
+const { container, final } = styles
