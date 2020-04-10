@@ -19,7 +19,7 @@ class SpeechRec extends Component {
     this.state = {
       listening: false
     }
-    // this.toggleListen = this.toggleListen.bind(this)
+    this.toggleListen = this.toggleListen.bind(this)
     this.handleListen = this.handleListen.bind(this)
   }
 
@@ -43,7 +43,7 @@ class SpeechRec extends Component {
     } else {
       recognition.stop()
       recognition.onend = () => {
-        console.log("Stopped listening per click")
+        console.log("Stopped listening")
       }
     }
 
@@ -53,12 +53,11 @@ class SpeechRec extends Component {
 
     let finalTranscript = ''
     recognition.onresult = event => {
-      
+
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
-
       }
       document.getElementById('final').innerHTML = finalTranscript
 

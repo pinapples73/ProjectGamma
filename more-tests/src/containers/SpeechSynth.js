@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 
 const SpeechSynthesis = window.SpeechSynthesis;
-const recognition = new SpeechRecognition();
+const recognition = new SpeechSynthesis();
 
 let voices = [];
 
@@ -12,17 +12,17 @@ class SpeechSynth extends Component {
   constructor() {
     super()
     this.state = {
-      speak: "Hi There you dancing bear."
+      words: "Hi There you dancing bear."
     }
   }
 
-  function speak(){
+  speak(){
     if (SpeechSynthesis.speaking) {
       console.error('speechSynthesis.speaking');
       return;
     }
-    if (speak !== '') {
-      let utterThis = new SpeechSynthesisUtterance(speak);
+    if (this.state.words !== '') {
+      let utterThis = new SpeechSynthesisUtterance(this.state.words);
       utterThis.onend = function (event) {
       console.log('SpeechSynthesisUtterance.onend');
       }
@@ -36,12 +36,14 @@ class SpeechSynth extends Component {
 
 
   render() {
-    speak();
+
     return(
       <p>I am speaking</p>
     )
   }
 
-}
+  componentDidMount(){
+    speak();
+  }
 
 export default SpeechSynth;
