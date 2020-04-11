@@ -32,6 +32,7 @@ body {
   background: #003300 ;
   color: #66cc66;
   font-family: 'Orbitron', sans-serif;
+  font-weight: 400;
   text-shadow: 0px 0px 5px #66cc66;
   font-size: 20px;
   padding-top: 5em;
@@ -45,6 +46,7 @@ body {
   color: #339933;
   transition: 0.5s;
   font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
   text-shadow: 0px 0px 5px #339933;
   text-align: center;
   text-decoration: none;

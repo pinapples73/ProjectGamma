@@ -10,7 +10,7 @@ const Choices = (props) => {
     }
 
     const choices = story.currentChoices.map((choice, index) => {
-        return <button className="button" key={index} value={choice.index} onClick={handleClick}>{choice.text}</button>
+        return <button className="button" key={index} voicetext={choice.text} value={choice.index} onClick={handleClick}>{choice.text}</button>
     })
 
     console.log(choices)
@@ -19,7 +19,7 @@ const Choices = (props) => {
     let dictation = "Select,"
 
     for(let index = 0; index < choices.length; index ++){
-        dictation  += ", " +  (index + 1) + ", " + choices[index]["props"]["text"] + ", "
+        dictation  += ", " +  (index + 1) + ", " + choices[index]["props"]["voicetext"] + ", "
     }
 
     return (
