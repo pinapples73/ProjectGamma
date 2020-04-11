@@ -3,8 +3,8 @@ import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
 
-const Story = require('inkjs').Story;
 
+const Story = require('inkjs').Story;
 
 
 class StoryContainer extends Component {
@@ -16,7 +16,7 @@ class StoryContainer extends Component {
       choiceIndex: -1
     }
     this.continueStory = this.continueStory.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChoice = this.handleChoice.bind(this);
   }
 
   componentDidMount(){
@@ -24,12 +24,17 @@ class StoryContainer extends Component {
     this.setState({story: this.story});
   }
 
-  handleClick(choiceIndex){
+  handleChoice(choiceIndex){
     choiceIndex = parseInt(choiceIndex);
     this.setState({choiceIndex: choiceIndex})
     this.story.ChooseChoiceIndex(choiceIndex);
     this.continueStory();
   }
+
+  // handleVoiceInput(voiceCommand){
+  //   const choices = this.story.currentChoices.filter((choice,index))
+  //
+  // }
 
   //loop through story
   continueStory(){
@@ -49,8 +54,8 @@ class StoryContainer extends Component {
 
       return(
         <Fragment>
-          <Paragraph className="paragraph-text" >{paragraphText}</Paragraph>
-          <Choices className="choice-text" onClick={this.handleClick}>{this.story}</Choices>
+          <Paragraph>{paragraphText}</Paragraph>
+          <Choices className="choice-text" onClick={this.handleChoice}>{this.story}</Choices>
         </Fragment>
       )
     }

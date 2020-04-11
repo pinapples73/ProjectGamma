@@ -28,6 +28,36 @@
   color: #61dafb;
 }
 
+body {
+  background: #003300 ;
+  color: #66cc66;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0px 0px 5px #66cc66;
+  font-size: 20px;
+  padding-top: 5em;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: #003300; /* Green */
+  border: none;
+  color: #339933;
+  transition: 0.5s;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0px 0px 5px #339933;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button:hover {color: #99cc99}
+
+.button:focus {
+  outline: none;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +66,4 @@
     transform: rotate(360deg);
   }
 }
+

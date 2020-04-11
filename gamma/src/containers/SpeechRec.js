@@ -38,6 +38,7 @@ class SpeechRec extends Component {
       recognition.onend = () => {
         console.log("...continue listening...")
         recognition.start()
+      //  todo look at changing this so it only repeats if the command is empty
       }
 
     } else {
