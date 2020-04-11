@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import SpeechRec from './SpeechRec';
+import SpeechRecogniser from './SpeechRecogniser';
 import StoryContainer from "./StoryContainer";
 
 class MainContainer extends Component {

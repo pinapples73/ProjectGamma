@@ -12,8 +12,10 @@ class StoryContainer extends Component {
     super(props);
     this.state = {
       storyRefresh: false,
-      choiceIndex: -1,
-      gammaSpeaking: false
+      gammaSpeaking: false,
+      paragraphSpeech: true,
+      choiceSpeech: true,
+      allSpeech: false
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
@@ -22,11 +24,12 @@ class StoryContainer extends Component {
     this.handleChoice = this.handleChoice.bind(this);
     this.generateCTextForSpeech = this.generateCTextForSpeech.bind(this)
     this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this)
+    this.generateStoryDetails = this.generateStoryDetails.bind(this)
+    this.handleSpeaking = this.handleSpeaking.bind(this)
   }
 
   componentDidMount(){
-    this.moveStoryToNextBranch();
-
+    this.generateStoryDetails();
     this.continueStory();
   }
 
@@ -36,17 +39,15 @@ class StoryContainer extends Component {
     choiceIndex = parseInt(choiceIndex);
     this.story.ChooseChoiceIndex(choiceIndex);
 
-    this.moveStoryToNextBranch();
-
+    this.generateStoryDetails();
     this.continueStory();
   }
 
-  moveStoryToNextBranch(){
+  generateStoryDetails(){
     this.paragraphText = this.generatePTextForSpeech();
     const choicesText = this.generateCTextForSpeech();
     this.fullText = this.paragraphText + choicesText;
 
-    //console.log(fullText)
     this.handleSpeaking(this.fullText);
   }
 
@@ -54,7 +55,7 @@ class StoryContainer extends Component {
     let paragraphText = '';
 
     while (this.story.canContinue) {
-      paragraphText = this.story.Continue();
+        paragraphText = this.story.Continue();
     }
     return paragraphText;
   }
@@ -69,25 +70,21 @@ class StoryContainer extends Component {
 
   handleSpeaking(stringToSpeak){
 
-    console.log(stringToSpeak);
-    const utterance = new SpeechSynthesisUtterance(stringToSpeak);
+    if(this.state.allSpeech) {
+      const utterance = new SpeechSynthesisUtterance(stringToSpeak);
 
-    this.voices = this.synth.getVoices();
-    utterance.voice = this.voices[2];
+      this.voices = this.synth.getVoices();
+      utterance.voice = this.voices[2];
 
-    this.synth.speak(utterance);
-    this.setState({gammaSpeaking: true});
+      this.synth.speak(utterance);
+      this.setState({gammaSpeaking: true});
+    }
   }
 
-  handleSpeechEnd(){
-    console.log('you have made it to the handle speech end method')
+  handleVoiceInput(voiceCommand){
+
+
   }
-
-
-  // handleVoiceInput(voiceCommand){
-  //   const choices = this.story.currentChoices.filter((choice,index))
-  //
-  // }
 
 
   continueStory(){
@@ -95,16 +92,9 @@ class StoryContainer extends Component {
   }
 
     render() {
-      if(!this.story){
-        return null
-      }
-
-      // const paragraphText = this.generatePTextForSpeech();
-      // const choicesText = this.generateCTextForSpeech();
-      // const fullText = paragraphText + choicesText;
-      //
-      // //console.log(fullText)
-      // this.handleSpeaking(fullText);
+      // if(!this.story){
+      //   return null
+      // }
 
       return(
         <Fragment>

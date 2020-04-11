@@ -5,14 +5,14 @@ import React, { Component } from "react"
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 const recognition = new SpeechRecognition()
 
-recognition.continous = true
+recognition.continuous = true
 recognition.interimResults = true
 recognition.lang = 'en-US'
 
 
 //------------------------COMPONENT-----------------------------
 
-class SpeechRec extends Component {
+class SpeechRecogniser extends Component {
 
   constructor() {
     super()
@@ -103,7 +103,7 @@ class SpeechRec extends Component {
 
 }
 
-export default SpeechRec
+export default SpeechRecogniser
 
 
 //-------------------------CSS------------------------------------
