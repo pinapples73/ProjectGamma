@@ -7,7 +7,7 @@ const Paragraph = (props) => {
 
     return (
         <Fragment>
-            <SpeechSynth paraText={paragraphText}/>
+            <SpeechSynth dictation={paragraphText}/>
             <p>{paragraphText}</p>
         </Fragment>
     )

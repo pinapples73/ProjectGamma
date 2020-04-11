@@ -2,13 +2,9 @@ const SpeechSynth = (props) => {
 
   const synth = window.speechSynthesis;
 
-  if(props.paraText.search('\n')) {
+  const dictation = new SpeechSynthesisUtterance(props.dictation);
 
-  }
-
-  const paragraphDictation = new SpeechSynthesisUtterance(props.paraText);
-
-  synth.speak(paragraphDictation);
+  synth.speak(dictation);
 
   return null;
 
