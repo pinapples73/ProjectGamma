@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
+import SpeechSynth from "../component/SpeechSynth";
 
 
 const Story = require('inkjs').Story;
@@ -17,6 +18,8 @@ class StoryContainer extends Component {
     }
     this.continueStory = this.continueStory.bind(this);
     this.handleChoice = this.handleChoice.bind(this);
+    this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this);
+    this.generateCTextForSpeech = this.generateCTextForSpeech.bind(this);
   }
 
   componentDidMount(){
@@ -32,9 +35,26 @@ class StoryContainer extends Component {
   }
 
   // handleVoiceInput(voiceCommand){
-  //   const choices = this.story.currentChoices.filter((choice,index))
   //
   // }
+
+  generatePTextForSpeech(){
+    let paragraphText = ''
+
+    while(this.story.canContinue) {
+      paragraphText = this.story.Continue();
+    }
+    return paragraphText;
+  }
+
+  generateCTextForSpeech(){
+    let choicesText = ', Select, '
+
+    this.story.currentChoices.map((choice, index) => {
+      choicesText += ", " + (index + 1) + ", " + choice.text + ", "
+    })
+    return choicesText;
+  }
 
   //loop through story
   continueStory(){
@@ -46,16 +66,17 @@ class StoryContainer extends Component {
         return null
       }
 
-      let paragraphText = ''
+      const paragraphText = this.generatePTextForSpeech();
 
-      while(this.story.canContinue) {
-        paragraphText = this.story.Continue();
-      }
+      const choicesText = this.generateCTextForSpeech();
 
-      return(
+      const fullText = paragraphText + choicesText;
+
+     return(
         <Fragment>
           <Paragraph>{paragraphText}</Paragraph>
-          <Choices className="choice-text" onClick={this.handleChoice}>{this.story}</Choices>
+          <Choices paraText={paragraphText} onClick={this.handleChoice}>{this.story}</Choices>
+          <SpeechSynth dictation={fullText}/>
         </Fragment>
       )
     }
