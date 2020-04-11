@@ -2,8 +2,6 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
-import SpeechSynth from "../component/SpeechSynth";
-
 
 const Story = require('inkjs').Story;
 
@@ -14,22 +12,42 @@ class StoryContainer extends Component {
     super(props);
     this.state = {
       storyRefresh: false,
-      choiceIndex: -1
+      choiceIndex: -1,
+      gammaSpeaking: false
     }
+    this.story = new Story(storyContent);
+    this.synth = window.speechSynthesis;
+
     this.continueStory = this.continueStory.bind(this);
     this.handleChoice = this.handleChoice.bind(this);
+    this.generateCTextForSpeech = this.generateCTextForSpeech.bind(this)
+    this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this)
   }
 
   componentDidMount(){
-    this.story = new Story(storyContent);
-    this.setState({storyRefresh: !this.state.storyRefresh});
+    this.moveStoryToNextBranch();
+
+    this.continueStory();
   }
 
   handleChoice(choiceIndex){
+    this.synth.cancel();
+
     choiceIndex = parseInt(choiceIndex);
-    this.setState({choiceIndex: choiceIndex})
     this.story.ChooseChoiceIndex(choiceIndex);
+
+    this.moveStoryToNextBranch();
+
     this.continueStory();
+  }
+
+  moveStoryToNextBranch(){
+    this.paragraphText = this.generatePTextForSpeech();
+    const choicesText = this.generateCTextForSpeech();
+    this.fullText = this.paragraphText + choicesText;
+
+    //console.log(fullText)
+    this.handleSpeaking(this.fullText);
   }
 
   generatePTextForSpeech() {
@@ -47,6 +65,18 @@ class StoryContainer extends Component {
     this.story.currentChoices.map((choice, index) => choiceText += ", " + (index + 1) + ", " + choice.text + ", ")
 
     return choiceText;
+  }
+
+  handleSpeaking(stringToSpeak){
+
+    console.log(stringToSpeak);
+    const utterance = new SpeechSynthesisUtterance(stringToSpeak);
+
+    this.voices = this.synth.getVoices();
+    utterance.voice = this.voices[2];
+
+    this.synth.speak(utterance);
+    this.setState({gammaSpeaking: true});
   }
 
   handleSpeechEnd(){
@@ -69,15 +99,17 @@ class StoryContainer extends Component {
         return null
       }
 
-      const paragraphText = this.generatePTextForSpeech();
-      const choicesText = this.generateCTextForSpeech();
-      const fullText = paragraphText + choicesText;
+      // const paragraphText = this.generatePTextForSpeech();
+      // const choicesText = this.generateCTextForSpeech();
+      // const fullText = paragraphText + choicesText;
+      //
+      // //console.log(fullText)
+      // this.handleSpeaking(fullText);
 
       return(
         <Fragment>
-          <Paragraph>{paragraphText}</Paragraph>
+          <Paragraph>{this.paragraphText}</Paragraph>
           <Choices onClick={this.handleChoice}>{this.story}</Choices>
-          <SpeechSynth dictation={fullText}/>
         </Fragment>
       )
     }
