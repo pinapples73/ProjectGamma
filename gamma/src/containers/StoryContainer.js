@@ -49,6 +49,10 @@ class StoryContainer extends Component {
     return choiceText;
   }
 
+  handleSpeechEnd(){
+    console.log('you have made it to the handle speech end method')
+  }
+
 
   // handleVoiceInput(voiceCommand){
   //   const choices = this.story.currentChoices.filter((choice,index))
