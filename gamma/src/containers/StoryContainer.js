@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
+import SpeechSynth from "../component/SpeechSynth";
 
 
 const Story = require('inkjs').Story;
@@ -12,7 +13,7 @@ class StoryContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      story: null,
+      storyRefresh: false,
       choiceIndex: -1
     }
     this.continueStory = this.continueStory.bind(this);
@@ -21,7 +22,7 @@ class StoryContainer extends Component {
 
   componentDidMount(){
     this.story = new Story(storyContent);
-    this.setState({story: this.story});
+    this.setState({storyRefresh: !this.state.storyRefresh});
   }
 
   handleChoice(choiceIndex){
@@ -31,14 +32,32 @@ class StoryContainer extends Component {
     this.continueStory();
   }
 
+  generatePTextForSpeech() {
+    let paragraphText = '';
+
+    while (this.story.canContinue) {
+      paragraphText = this.story.Continue();
+    }
+    return paragraphText;
+  }
+
+  generateCTextForSpeech(){
+    let choiceText = 'select, ';
+
+    this.story.currentChoices.map((choice, index) => choiceText += ", " + (index + 1) + ", " + choice.text + ", ")
+
+    return choiceText;
+  }
+
+
   // handleVoiceInput(voiceCommand){
   //   const choices = this.story.currentChoices.filter((choice,index))
   //
   // }
 
-  //loop through story
+
   continueStory(){
-    this.setState({story: this.story});
+    this.setState({storyRefresh: !this.state.storyRefresh});
   }
 
     render() {
@@ -46,16 +65,15 @@ class StoryContainer extends Component {
         return null
       }
 
-      let paragraphText = ''
-
-      while(this.story.canContinue) {
-        paragraphText = this.story.Continue();
-      }
+      const paragraphText = this.generatePTextForSpeech();
+      const choicesText = this.generateCTextForSpeech();
+      const fullText = paragraphText + choicesText;
 
       return(
         <Fragment>
           <Paragraph>{paragraphText}</Paragraph>
-          <Choices className="choice-text" onClick={this.handleChoice}>{this.story}</Choices>
+          <Choices onClick={this.handleChoice}>{this.story}</Choices>
+          <SpeechSynth dictation={fullText}/>
         </Fragment>
       )
     }
