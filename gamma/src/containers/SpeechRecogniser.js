@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from "react"
 
-//------------------------SPEECH RECOGNITION-----------------------------
-
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-const recognition = new SpeechRecognition()
+const recogniser = new SpeechRecognition()
 
-recognition.continuous = true
-recognition.interimResults = true
-recognition.lang = 'en-US'
+recogniser.continuous = true
+recogniser.interimResults = true
+recogniser.lang = 'en-US'
 
 
 //------------------------COMPONENT-----------------------------
@@ -28,24 +26,24 @@ class SpeechRecogniser extends Component {
     console.log('listening?', this.state.listening)
 
       if (this.state.listening) {
-        recognition.start()
-        recognition.onend = () => {
+        recogniser.start()
+        recogniser.onend = () => {
           //console.log("...continue listening...")
-          recognition.start()
+          recogniser.start()
         }
       } else {
-        recognition.stop()
-        recognition.onend = () => {
+        recogniser.stop()
+        recogniser.onend = () => {
           console.log("Stopped listening")
         }
       }
-      recognition.onstart = () => {
+      recogniser.onstart = () => {
         console.log("Listening!")
       }
 
       let finalTranscript = ''
 
-      recognition.onresult = event => {
+      recogniser.onresult = event => {
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) finalTranscript += transcript + ' ';
@@ -58,8 +56,8 @@ class SpeechRecogniser extends Component {
         console.log('stopCmd', stopCmd)
 
         if (stopCmd[0] === 'within' && stopCmd[1] === 'cells'){
-          recognition.stop()
-          recognition.onend = () => {
+          recogniser.stop()
+          recogniser.onend = () => {
             console.log('Stopped listening per command')
             const finalText = transcriptArr.slice(0, -3).join(' ')
             this.setState({spokenWord: finalText})
@@ -69,8 +67,8 @@ class SpeechRecogniser extends Component {
 
       //-----------------------------------------------------------------------
 
-      recognition.onerror = event => {
-        console.log("Error occurred in recognition: " + event.error)
+      recogniser.onerror = event => {
+        console.log("Error occurred in recogniser: " + event.error)
       }
   }
 

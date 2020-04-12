@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
-import SpeechRecogniser from "./SpeechRecogniser";
+import SpeechRecogniser from "../component/SpeechRecogniser2";
 
 const Story = require('inkjs').Story;
 
@@ -16,7 +16,8 @@ class StoryContainer extends Component {
       gammaSpeaking: false,
       paragraphSpeech: true,
       choiceSpeech: true,
-      allSpeech: true
+      allSpeech: true,
+      speechCommand: ''
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
@@ -49,6 +50,8 @@ class StoryContainer extends Component {
     const choicesText = this.generateCTextForSpeech();
     this.fullText = this.paragraphText + choicesText;
 
+    this.choicesArray = this.generateChoiceArrayForSpeechRecognition();
+
     this.handleSpeaking(this.fullText);
   }
 
@@ -63,10 +66,18 @@ class StoryContainer extends Component {
 
   generateCTextForSpeech(){
     let choiceText = 'select, ';
-
     this.story.currentChoices.map((choice, index) => choiceText += ", " + (index + 1) + ", " + choice.text + ", ")
-
     return choiceText;
+  }
+
+  generateChoiceArrayForSpeechRecognition(){
+    let choiceArray = [];
+    this.story.currentChoices.map((choice, index) => {
+      choiceArray.push({choiceCommand: choice.text, choiceIndex: choice.index})
+      return null
+    });
+    console.log(choiceArray)
+    return choiceArray;
   }
 
   handleSpeaking(stringToSpeak){
@@ -92,7 +103,6 @@ class StoryContainer extends Component {
 
   }
 
-
   continueStory(){
     this.setState({storyRefresh: !this.state.storyRefresh});
   }
@@ -106,7 +116,7 @@ class StoryContainer extends Component {
         <Fragment>
           <Paragraph>{this.paragraphText}</Paragraph>
           <Choices onClick={this.handleChoice}>{this.story}</Choices>
-          <SpeechRecogniser isSpeaking={this.state.gammaSpeaking}/>
+          <SpeechRecogniser isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
         </Fragment>
       )
     }
