@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
+import SpeechRecogniser from "./SpeechRecogniser";
 
 const Story = require('inkjs').Story;
 
@@ -15,7 +16,7 @@ class StoryContainer extends Component {
       gammaSpeaking: false,
       paragraphSpeech: true,
       choiceSpeech: true,
-      allSpeech: false
+      allSpeech: true
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
@@ -72,12 +73,17 @@ class StoryContainer extends Component {
 
     if(this.state.allSpeech) {
       const utterance = new SpeechSynthesisUtterance(stringToSpeak);
+      utterance.onstart = () => {
+        this.setState({gammaSpeaking: true})
+      }
+      utterance.onend = () => {
+        this.setState({gammaSpeaking: false})
+      }
 
       this.voices = this.synth.getVoices();
       utterance.voice = this.voices[2];
 
       this.synth.speak(utterance);
-      this.setState({gammaSpeaking: true});
     }
   }
 
@@ -100,6 +106,7 @@ class StoryContainer extends Component {
         <Fragment>
           <Paragraph>{this.paragraphText}</Paragraph>
           <Choices onClick={this.handleChoice}>{this.story}</Choices>
+          <SpeechRecogniser isSpeaking={this.state.gammaSpeaking}/>
         </Fragment>
       )
     }
