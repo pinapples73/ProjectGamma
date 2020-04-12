@@ -68,7 +68,7 @@ const SpeechRecogniser = (props) => {
         if(speechResult === checkText || speechResult === checkIndex || speechResult === checkBoth) {
           chosenChoiceIndex = -1
           console.log('comparing:' + speechResult + ' with (' + checkIndex + "/" + checkText +")")
-          console.log('matched speech result with choice text', checkIndex, checkText)
+          console.log('matched speech result with choice text', checkIndex, checkText, choice.choiceIndex)
           console.log('selected choice index is:' , choice.choiceIndex)
           recogniser.stop()
           console.log('Gamma has stopped listening')

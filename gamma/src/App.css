@@ -35,9 +35,6 @@ body {
   font-weight: 400;
   text-shadow: 0px 0px 5px #66cc66;
   font-size: 20px;
-  padding-top: 5em;
-  display: flex;
-  justify-content: center;
 }
 
 .button {
@@ -54,7 +51,9 @@ body {
   font-size: 16px;
 }
 
-.button:hover {color: #99cc99}
+.button:hover {
+  color: #99cc99
+}
 
 .button:focus {
   outline: none;
