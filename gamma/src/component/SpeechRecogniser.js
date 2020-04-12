@@ -65,7 +65,7 @@ const SpeechRecogniser = (props) => {
         let checkBoth = checkIndex + checkText
 
         //check if result is equal to the index number of choice or the choice text
-        if(speechResult === checkText || speechResult === checkIndex) {
+        if(speechResult === checkText || speechResult === checkIndex || speechResult === checkBoth) {
           chosenChoiceIndex = -1
           console.log('comparing:' + speechResult + ' with (' + checkIndex + "/" + checkText +")")
           console.log('matched speech result with choice text', checkIndex, checkText)
