@@ -9,12 +9,12 @@ const Choices = (props) => {
     }
 
     const choices = story.currentChoices.map((choice, index) => {
-        return <button className="button" key={index}  value={choice.index} onClick={handleClick}>{choice.text}</button>
+        return <button className="button" key={index}  value={choice.index} onClick={handleClick}>&lt;&nbsp;{index + 1}.&nbsp;{choice.text}&nbsp;&gt;</button>
     })
 
     return (
         <Fragment>
-            <p>&lt;{choices}&gt;</p>
+            <p>{choices}</p>
         </Fragment>
     )
 

@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
-import SpeechRecogniser from "../component/SpeechRecogniser2";
+import SpeechRecogniser from "../component/SpeechRecogniser";
 
 const Story = require('inkjs').Story;
 
