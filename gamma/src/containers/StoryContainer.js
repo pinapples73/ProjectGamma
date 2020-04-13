@@ -4,7 +4,7 @@ import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
 import SpeechRecogniser from "../component/SpeechRecogniser";
 import NavBar from "../component/NavBar";
-import { Grid, Row, Col } from 'react-flexbox-grid';
+
 
 const Story = require('inkjs').Story;
 
@@ -94,7 +94,8 @@ class StoryContainer extends Component {
       }
 
       this.voices = this.synth.getVoices();
-      utterance.voice = this.voices[2];
+      utterance.voice = this.voices[1];
+      console.log(this.voices)
 
       this.synth.speak(utterance);
     }
