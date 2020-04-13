@@ -35,6 +35,9 @@ body {
   font-weight: 400;
   text-shadow: 0px 0px 5px #66cc66;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+
 }
 
 .button {
