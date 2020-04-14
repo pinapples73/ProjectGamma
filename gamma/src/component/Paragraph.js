@@ -6,7 +6,9 @@ const Paragraph = (props) => {
     const paragraphText = props.children
 
     return (
-        <TypeEffect string={paragraphText}/>
+        <Fragment>
+            <p>{paragraphText}</p>
+        </Fragment>
 
     )
 

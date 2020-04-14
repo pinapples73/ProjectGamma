@@ -100,10 +100,7 @@ class StoryContainer extends Component {
     }
   }
 
-  handleVoiceInput(voiceCommand){
 
-
-  }
 
 
 
