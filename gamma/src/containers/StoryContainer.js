@@ -18,7 +18,9 @@ class StoryContainer extends Component {
       paragraphSpeech: true,
       choiceSpeech: true,
       allSpeech: true,
-      speechCommand: ''
+      speechCommand: '',
+      paragraphArray: '',
+      typedParagraphText: []
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
@@ -29,6 +31,7 @@ class StoryContainer extends Component {
     this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this)
     this.generateStoryDetails = this.generateStoryDetails.bind(this)
     this.handleSpeaking = this.handleSpeaking.bind(this)
+    this.typingTimer = this.typingTimer.bind(this)
   }
 
   componentDidMount(){
@@ -63,6 +66,9 @@ class StoryContainer extends Component {
         paragraphText = this.story.Continue();
     }
     return paragraphText;
+  }
+
+  typingTimer(){
   }
 
   generateCTextForSpeech(){
@@ -100,18 +106,11 @@ class StoryContainer extends Component {
     }
   }
 
-
-
-
-
   continueStory(){
     this.setState({storyRefresh: !this.state.storyRefresh});
   }
 
     render() {
-      // if(!this.story){
-      //   return null
-      // }
 
       return(
         <Fragment>

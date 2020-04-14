@@ -39,6 +39,9 @@ body {
   justify-content: center;
 
 }
+.container {
+  background-image: url(./images/monitor-background.png);
+ }
 
 .button {
   background-color: #003300; /* Green */

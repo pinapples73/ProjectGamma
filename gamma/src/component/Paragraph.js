@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import TypeEffect from './TypeEffect';
 
 const Paragraph = (props) => {
 
@@ -9,7 +8,6 @@ const Paragraph = (props) => {
         <Fragment>
             <p>{paragraphText}</p>
         </Fragment>
-
     )
 
 }
