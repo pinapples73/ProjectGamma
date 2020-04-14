@@ -73,6 +73,7 @@ const SpeechRecogniser = (props) => {
           recogniser.stop()
           console.log('Gamma has stopped listening')
           chosenChoiceIndex =  choice.choiceIndex
+          props.handleChoice(chosenChoiceIndex)
           return null
         }
         console.log('chosenChoiceIndex:', chosenChoiceIndex)

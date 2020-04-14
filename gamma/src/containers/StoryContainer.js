@@ -5,7 +5,6 @@ import Choices from "../component/Choices";
 import SpeechRecogniser from "../component/SpeechRecogniser";
 import NavBar from "../component/NavBar";
 
-
 const Story = require('inkjs').Story;
 
 
@@ -19,7 +18,9 @@ class StoryContainer extends Component {
       paragraphSpeech: true,
       choiceSpeech: true,
       allSpeech: true,
-      speechCommand: ''
+      speechCommand: '',
+      paragraphArray: '',
+      typedParagraphText: []
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
@@ -30,6 +31,7 @@ class StoryContainer extends Component {
     this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this)
     this.generateStoryDetails = this.generateStoryDetails.bind(this)
     this.handleSpeaking = this.handleSpeaking.bind(this)
+    this.typingTimer = this.typingTimer.bind(this)
   }
 
   componentDidMount(){
@@ -66,6 +68,9 @@ class StoryContainer extends Component {
     return paragraphText;
   }
 
+  typingTimer(){
+  }
+
   generateCTextForSpeech(){
     let choiceText = 'select, ';
     this.story.currentChoices.map((choice, index) => choiceText += ", " + (index + 1) + ", " + choice.text + ", ")
@@ -94,35 +99,25 @@ class StoryContainer extends Component {
       }
 
       this.voices = this.synth.getVoices();
+
       utterance.voice = this.voices[1];
       console.log(this.voices)
-
       this.synth.speak(utterance);
     }
   }
-
-  handleVoiceInput(voiceCommand){
-
-
-  }
-
-
 
   continueStory(){
     this.setState({storyRefresh: !this.state.storyRefresh});
   }
 
     render() {
-      // if(!this.story){
-      //   return null
-      // }
 
       return(
         <Fragment>
           <NavBar/>
           <Paragraph>{this.paragraphText}</Paragraph>
           <Choices onClick={this.handleChoice}>{this.story}</Choices>
-          <SpeechRecogniser isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
+          <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
         </Fragment>
       )
     }
