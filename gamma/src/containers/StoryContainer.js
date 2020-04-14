@@ -99,7 +99,7 @@ class StoryContainer extends Component {
       }
 
       this.voices = this.synth.getVoices();
-
+      console.log(this.voices)
       utterance.voice = this.voices[1];
       console.log(this.voices)
       this.synth.speak(utterance);

@@ -15,7 +15,7 @@ const SpeechRecogniser = (props) => {
 
   recogniser.continuous = true
   recogniser.interimResults = false
-  recogniser.lang = 'en-Uk'
+  recogniser.lang = 'en-US'
 
   //------------------------check if Gamma is currently speaking and kick off listening if not -------------------------
 
