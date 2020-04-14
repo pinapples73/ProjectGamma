@@ -4,7 +4,9 @@ import MainContainer from './containers/MainContainer';
 
 function App() {
   return (
-        <MainContainer className='container'/>
+      <div className="grid-layout">
+        <MainContainer/>
+      </div>
     );
 }
 

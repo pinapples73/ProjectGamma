@@ -15,6 +15,7 @@ class StoryContainer extends Component {
     this.state = {
       storyRefresh: false,
       gammaSpeaking: false,
+      vocalString: "listening",
       paragraphSpeech: true,
       choiceSpeech: true,
       allSpeech: true,
@@ -93,9 +94,11 @@ class StoryContainer extends Component {
       const utterance = new SpeechSynthesisUtterance(stringToSpeak);
       utterance.onstart = () => {
         this.setState({gammaSpeaking: true})
+        this.setState({vocalString:"speaking"})
       }
       utterance.onend = () => {
         this.setState({gammaSpeaking: false})
+        this.setState({vocalString:"listening"})
       }
 
       this.voices = this.synth.getVoices();
@@ -114,10 +117,20 @@ class StoryContainer extends Component {
 
       return(
         <Fragment>
-          <NavBar/>
-          <Paragraph>{this.paragraphText}</Paragraph>
-          <Choices onClick={this.handleChoice}>{this.story}</Choices>
-          <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
+          <p className="item-nav">
+            <NavBar/>
+          </p>
+          <p className="item-paragraph">
+            <Paragraph >{this.paragraphText}</Paragraph>
+          </p>
+          <p className="item-choice">------------------------------------------</p>
+          <p className="item-choice">
+            <Choices className="item-choice" onClick={this.handleChoice}>{this.story}</Choices>
+          </p>
+          <p className="item-vocal">
+            {this.state.vocalString}
+            <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
+          </p>
         </Fragment>
       )
     }
