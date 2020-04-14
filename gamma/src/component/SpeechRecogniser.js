@@ -88,7 +88,6 @@ const SpeechRecogniser = (props) => {
     return null
 
   }
-
 }
 
 export default SpeechRecogniser
