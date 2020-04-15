@@ -26,7 +26,6 @@ render()
 {
     return (
         <div>
-            <h3>Weather Terminal</h3>
             <WeatherDetail
                 weatherItems={this.state.weatherItems}
             />
@@ -35,7 +34,5 @@ render()
     )
 }
 }
-
-
 
 export default WeatherContainer;

@@ -5,6 +5,7 @@ import Choices from "../component/Choices";
 import SpeechRecogniser from "../component/SpeechRecogniser";
 import NavBar from "../component/NavBar";
 import VoiceSelect from "../component/VoiceSelect";
+import WeatherContainer from "./WeatherContainer";
 
 const Story = require('inkjs').Story;
 
@@ -122,6 +123,9 @@ class StoryContainer extends Component {
 
       return(
           <div className="grid-layout">
+            <p className="item-weather">
+              <WeatherContainer />
+            </p>
             <p className="item-nav">
               <NavBar/>
             </p>
@@ -129,7 +133,7 @@ class StoryContainer extends Component {
               <VoiceSelect voiceArray={this.voices} currentVoice={this.state.selectedVoice} onClick={this.changeVoice}/>
             </p>
             <p className="item-paragraph">
-                <Paragraph >{this.paragraphText}</Paragraph>
+              <Paragraph >{this.paragraphText}</Paragraph>
             </p>
               <p className="item-choice">------------------------------------------</p>
               <p className="item-choice">

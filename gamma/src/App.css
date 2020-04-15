@@ -13,7 +13,6 @@
   }
 }
 
-
 @font-face {
   font-family: 'Retro2';
   src: local('Retro2'), url(./fonts/power_pixel-7.ttf) format('truetype');
@@ -24,10 +23,6 @@
   font-family: 'Retro4';
   src: local('Retro4'), url(./fonts/visitor1.ttf) format('truetype');
 }
-
-
-
-
 
 .App-header {
   background-color: #282c34;
@@ -91,6 +86,16 @@ body {
   padding-left: 20px;
   overflow: auto;
 }
+.item-weather {
+  grid-area: weather-area;
+  display:flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  max-height: 100%;
+  max-width: 300px;
+  font-size: 20px;
+  word-wrap: break-word;
+}
 
 ::-webkit-scrollbar {
   display: none;
@@ -111,12 +116,12 @@ body {
 .grid-layout {
   display: grid;
   grid-template-columns: 3fr 6fr 3fr;
-  grid-template-rows: 75px 50px 360px 300px auto auto;
+  grid-template-rows: 100px 50px 360px 300px auto auto;
   grid-template-areas:
-    ". . ."
-    ". nav-area ."
-    ". paragraph-area menu-area"
-    ". choices-area menu-area"
+    "weather-area . ."
+    "weather-area nav-area ."
+    "weather-area paragraph-area menu-area"
+    ". choices-area ."
     ". vocal-area ."
     ". . .";
 }

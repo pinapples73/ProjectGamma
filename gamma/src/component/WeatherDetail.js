@@ -13,12 +13,12 @@ const WeatherDetail = (props) => {
 
 
     return(
-            <div className="weather">
-                <h6>AREA:{props.weatherItems.title}</h6>
-                <h6>TIME:{props.weatherItems.time}</h6>
-                <ul>
-                    {listItems}
-                </ul>
+            <div >
+                <p>AREA:{props.weatherItems.title}</p>
+                <p>TIME:{props.weatherItems.time}</p>
+                <p>
+                    {listItems[0]}
+                </p>
             </div>
     )
 
