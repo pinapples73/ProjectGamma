@@ -25,10 +25,8 @@ const VoiceSelect = (props) => {
     })
 
     return (
-        <div id="voiceMenu">
             <p>{options}</p>
-        </div>
-    )
+     )
 }
 
 export default VoiceSelect;

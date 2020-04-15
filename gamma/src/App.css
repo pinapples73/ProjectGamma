@@ -13,20 +13,12 @@
   }
 }
 
-@font-face {
-  font-family: 'Retro';
-  src: local('Retro'), url(./fonts/LazenbyCompLiquid.ttf) format('truetype');
-}
 
 @font-face {
   font-family: 'Retro2';
   src: local('Retro2'), url(./fonts/power_pixel-7.ttf) format('truetype');
 }
 
-@font-face {
-  font-family: 'Retro3';
-  src: local('Retro3'), url(./fonts/gaposiss.ttf) format('truetype');
-}
 
 @font-face {
   font-family: 'Retro4';
@@ -94,10 +86,9 @@ body {
   display:flex;
   flex-direction: column;
   justify-self: flex-end;
-  align-items: center;
-  max-height: 40%;
-  max-width: 300px;
-  padding: 20px;
+  max-height: 46%;
+  max-width: 330px;
+  padding-left: 20px;
   overflow: auto;
 }
 
@@ -183,30 +174,10 @@ body {
   font-size: 20px;
   display:flex;
   flex-flow: column;
-  padding-bottom: 10px;
-  padding-top: 10px;
   justify-content: center;
   align-items: center;
 }
 
-.button3 {
-  background-color: transparent;
-  border: none;
-  color: #6ae2e2;
-  transition: 0.5s;
-  font-family: 'Retro4', cursive;
-  font-weight: 700;
-  text-shadow: 0 0 10px #88a0bb, 0 0 20px #27a6ff, 0 0 30px #0f7fcd;
-  text-align: left;
-  text-decoration: none;
-  font-size: 20px;
-  display:flex;
-  flex-flow: column;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  justify-content: center;
-  align-items: center;
-}
 
 .button:hover {
   color: #ffffff;
@@ -233,24 +204,6 @@ body {
   box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
 }
 
-.button3 {
-  outline: none;
-  background-color: #6ae2e2;
-  color: #111d23;
-  box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
-}
-.button3:hover {
-  outline: none;
-  background-color: #6ae2e2;
-  color: #111d23;
-  box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
-}
-.button3:focus {
-  outline: none;
-  background-color: #6ae2e2;
-  color: #111d23;
-  box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
-}
 
 
 
