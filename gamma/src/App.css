@@ -73,6 +73,8 @@ body {
 .item-paragraph {
   grid-area: paragraph-area;
   animation: wobble 2s linear infinite;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .item-choice {
@@ -103,7 +105,7 @@ body {
 
 .grid-layout {
   display: grid;
-  grid-template-columns: 3fr 6fr 2fr;
+  grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: 75px 50px 360px 300px auto auto;
   grid-template-areas:
     ". . ."
@@ -112,6 +114,27 @@ body {
     ". choices-area ."
     ". vocal-area ."
     ". . .";
+}
+
+.spinner {
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  transform-style: preserve-3d;
+  font-size: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
 }
 
 
@@ -142,6 +165,7 @@ body {
 .button:focus {
   outline: none;
 }
+
 
 
 

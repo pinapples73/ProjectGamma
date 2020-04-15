@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import Paragraph from "../component/Paragraph";
 import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
@@ -36,6 +36,8 @@ class StoryContainer extends Component {
   }
 
   componentDidMount(){
+
+
     this.generateStoryDetails();
     this.continueStory();
   }
@@ -80,7 +82,7 @@ class StoryContainer extends Component {
 
   generateChoiceArrayForSpeechRecognition(){
     let choiceArray = [];
-    this.story.currentChoices.map((choice, index) => {
+    this.story.currentChoices.map((choice) => {
       choiceArray.push({choiceCommand: choice.text, choiceIndex: choice.index})
       return null
     });
@@ -91,7 +93,14 @@ class StoryContainer extends Component {
   handleSpeaking(stringToSpeak){
 
     if(this.state.allSpeech) {
+
+      this.voices = this.synth.getVoices();
+
       const utterance = new SpeechSynthesisUtterance(stringToSpeak);
+
+      utterance.voice = this.voices[2];
+
+
       utterance.onstart = () => {
         this.setState({gammaSpeaking: true})
         this.setState({vocalString:"speaking"})
@@ -100,11 +109,6 @@ class StoryContainer extends Component {
         this.setState({gammaSpeaking: false})
         this.setState({vocalString:"listening"})
       }
-
-      this.voices = this.synth.getVoices();
-      console.log(this.voices)
-      utterance.voice = this.voices[2];
-
       this.synth.speak(utterance);
     }
   }
@@ -116,22 +120,22 @@ class StoryContainer extends Component {
     render() {
 
       return(
-        <Fragment>
-          <p className="item-nav">
-            <NavBar/>
-          </p>
-          <p className="item-paragraph">
-            <Paragraph >{this.paragraphText}</Paragraph>
-          </p>
-          <p className="item-choice">------------------------------------------</p>
-          <p className="item-choice">
-            <Choices className="item-choice" onClick={this.handleChoice}>{this.story}</Choices>
-          </p>
-          <p className="item-vocal">
-            {this.state.vocalString}
-            <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
-          </p>
-        </Fragment>
+          <div className="grid-layout">
+            <p className="item-nav">
+              <NavBar/>
+            </p>
+            <p className="item-paragraph">
+                <Paragraph >{this.paragraphText}</Paragraph>
+            </p>
+              <p className="item-choice">------------------------------------------</p>
+              <p className="item-choice">
+              <Choices className="item-choice" onClick={this.handleChoice}>{this.story}</Choices>
+            </p>
+            <p className="item-vocal">
+              {this.state.vocalString}
+              <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
+            </p>
+          </div>
       )
     }
 

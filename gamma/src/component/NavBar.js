@@ -5,7 +5,7 @@ const NavBar = () => {
 
     return (
         <Fragment >
-            <p>GAMMA SYSTEMS (c)1984</p>
+            <p>SNIDERDYNE SYSTEMS (c)1982</p>
         </Fragment>
 
 
