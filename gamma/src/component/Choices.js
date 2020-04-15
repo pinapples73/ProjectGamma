@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 const Choices = (props) => {
 
@@ -12,12 +12,13 @@ const Choices = (props) => {
         return (
             <button className="button" key={index}  value={choice.index} onClick={handleClick}>&lt;&nbsp;{index + 1}.&nbsp;{choice.text}&nbsp;&gt;</button>
         )
+
     })
 
     return (
-        <Fragment>
-            <p>{choices}</p>
-        </Fragment>
+        <p>
+            {choices}
+        </p>
     )
 
 }

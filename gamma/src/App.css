@@ -13,20 +13,12 @@
   }
 }
 
-@font-face {
-  font-family: 'Retro';
-  src: local('Retro'), url(./fonts/LazenbyCompLiquid.ttf) format('truetype');
-}
 
 @font-face {
   font-family: 'Retro2';
   src: local('Retro2'), url(./fonts/power_pixel-7.ttf) format('truetype');
 }
 
-@font-face {
-  font-family: 'Retro3';
-  src: local('Retro3'), url(./fonts/gaposiss.ttf) format('truetype');
-}
 
 @font-face {
   font-family: 'Retro4';
@@ -78,7 +70,8 @@ body {
 .item-choice {
   grid-area: choices-area;
   display:flex;
-  flex-flow: row;
+  flex-flow: column;
+  justify-content: left;
   animation: wobble 2s linear infinite;
 }
 
@@ -87,6 +80,20 @@ body {
   display:flex;
   justify-content: flex-end;
   animation: blink 2s linear infinite;
+}
+.item-menu {
+  grid-area: menu-area;
+  display:flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  max-height: 46%;
+  max-width: 330px;
+  padding-left: 20px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes blink {
@@ -103,18 +110,37 @@ body {
 
 .grid-layout {
   display: grid;
-  grid-template-columns: 3fr 6fr 2fr;
+  grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: 75px 50px 360px 300px auto auto;
   grid-template-areas:
     ". . ."
     ". nav-area ."
-    ". paragraph-area ."
-    ". choices-area ."
+    ". paragraph-area menu-area"
+    ". choices-area menu-area"
     ". vocal-area ."
     ". . .";
 }
 
+.spinner {
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  transform-style: preserve-3d;
+  font-size: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+@keyframes spinner {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
 
 .button {
   background-color: transparent;
@@ -128,20 +154,58 @@ body {
   text-decoration: none;
   font-size: 40px;
   display:flex;
-  flex-direction: row;
+  flex-flow: column;
   padding-bottom: 10px;
   padding-top: 10px;
+  justify-content: center;
+  align-items: center;
  }
+
+.button2 {
+  background-color: transparent;
+  border: none;
+  color: #6ae2e2;
+  transition: 0.5s;
+  font-family: 'Retro4', cursive;
+  font-weight: 700;
+  text-shadow: 0 0 10px #88a0bb, 0 0 20px #27a6ff, 0 0 30px #0f7fcd;
+  text-align: left;
+  text-decoration: none;
+  font-size: 20px;
+  display:flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .button:hover {
   color: #ffffff;
   text-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
 }
+.button2:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
+}
+.button2:active {
+  outline: none;
+  background-color: #6ae2e2;
+  color: #111d23;
+  box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
+}
 
 .button:focus {
   outline: none;
 }
+.button2:focus {
+  outline: none;
+  background-color: #6ae2e2;
+  color: #111d23;
+  box-shadow: 0 0 10px #b5c8de, 0 0 20px #69bffb, 0 0 30px #0f7fcd;
+}
+
+
+
 
 
 
