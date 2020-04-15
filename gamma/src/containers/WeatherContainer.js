@@ -21,13 +21,11 @@ class WeatherContainer extends Component {
 
     };
 
-
 render()
 {
     return (
         <div>
-            <WeatherDetail
-                weatherItems={this.state.weatherItems}
+            <WeatherDetail weatherItems={this.state.weatherItems}
             />
         </div>
 

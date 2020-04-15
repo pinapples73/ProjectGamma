@@ -10,7 +10,6 @@ const VoiceSelect = (props) => {
     }
 
     const options = props.voiceArray.map((option, index) => {
-        console.log(props.currentVoice, index)
         let name = option.name.toLowerCase()
         name = name.replace("microsoft", "")
         name = name.replace("desktop", "")
@@ -25,7 +24,7 @@ const VoiceSelect = (props) => {
     })
 
     return (
-            <p>{options}</p>
+            <div>{options}</div>
      )
 }
 

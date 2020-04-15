@@ -123,26 +123,26 @@ class StoryContainer extends Component {
 
       return(
           <div className="grid-layout">
-            <p className="item-weather">
+            <div className="item-weather">
               <WeatherContainer />
-            </p>
-            <p className="item-nav">
+            </div>
+            <div className="item-nav">
               <NavBar/>
-            </p>
-            <p className="item-menu">
+            </div>
+            <div className="item-menu">
               <VoiceSelect voiceArray={this.voices} currentVoice={this.state.selectedVoice} onClick={this.changeVoice}/>
-            </p>
-            <p className="item-paragraph">
+            </div>
+            <div className="item-paragraph">
               <Paragraph >{this.paragraphText}</Paragraph>
-            </p>
-              <p className="item-choice">------------------------------------------</p>
-              <p className="item-choice">
+            </div>
+            <div className="item-choice">
+              <p >------------------------------------------</p>
               <Choices className="item-choice" onClick={this.handleChoice}>{this.story}</Choices>
-            </p>
-            <p className="item-vocal">
+            </div>
+            <div className="item-vocal">
               {this.state.vocalString}
               <SpeechRecogniser handleChoice={this.handleChoice} isSpeaking={this.state.gammaSpeaking} speechCommand={this.choicesArray}/>
-            </p>
+            </div>
           </div>
       )
     }
