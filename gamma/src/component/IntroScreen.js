@@ -5,7 +5,6 @@ const Intro = () => {
     return (
         <div>
             <p className="spinner">G</p>
-
         </div>
 
     )

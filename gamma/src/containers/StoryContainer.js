@@ -4,6 +4,7 @@ import storyContent from "../inkfiles/story";
 import Choices from "../component/Choices";
 import SpeechRecogniser from "../component/SpeechRecogniser";
 import NavBar from "../component/NavBar";
+import VoiceSelect from "../component/VoiceSelect";
 
 const Story = require('inkjs').Story;
 
@@ -16,15 +17,16 @@ class StoryContainer extends Component {
       storyRefresh: false,
       gammaSpeaking: false,
       vocalString: "listening",
-      paragraphSpeech: true,
-      choiceSpeech: true,
       allSpeech: true,
       speechCommand: '',
-      paragraphArray: '',
-      typedParagraphText: []
+      selectedVoice: 1
+
     }
     this.story = new Story(storyContent);
     this.synth = window.speechSynthesis;
+
+    // this.selectedVoice = 1;
+    this.firstLoad = false;
 
     this.continueStory = this.continueStory.bind(this);
     this.handleChoice = this.handleChoice.bind(this);
@@ -32,12 +34,10 @@ class StoryContainer extends Component {
     this.generatePTextForSpeech = this.generatePTextForSpeech.bind(this)
     this.generateStoryDetails = this.generateStoryDetails.bind(this)
     this.handleSpeaking = this.handleSpeaking.bind(this)
-    this.typingTimer = this.typingTimer.bind(this)
+    this.changeVoice = this.changeVoice.bind(this)
   }
 
   componentDidMount(){
-
-
     this.generateStoryDetails();
     this.continueStory();
   }
@@ -71,9 +71,6 @@ class StoryContainer extends Component {
     return paragraphText;
   }
 
-  typingTimer(){
-  }
-
   generateCTextForSpeech(){
     let choiceText = 'select, ';
     this.story.currentChoices.map((choice, index) => choiceText += ", " + (index + 1) + ", " + choice.text + ", ")
@@ -95,10 +92,10 @@ class StoryContainer extends Component {
     if(this.state.allSpeech) {
 
       this.voices = this.synth.getVoices();
-
+      console.log(this.voices)
       const utterance = new SpeechSynthesisUtterance(stringToSpeak);
 
-      utterance.voice = this.voices[2];
+      utterance.voice = this.voices[this.state.selectedVoice];
 
 
       utterance.onstart = () => {
@@ -113,6 +110,10 @@ class StoryContainer extends Component {
     }
   }
 
+  changeVoice(voiceIndex) {
+    this.setState({selectedVoice: voiceIndex})
+  }
+
   continueStory(){
     this.setState({storyRefresh: !this.state.storyRefresh});
   }
@@ -123,6 +124,9 @@ class StoryContainer extends Component {
           <div className="grid-layout">
             <p className="item-nav">
               <NavBar/>
+            </p>
+            <p className="item-menu">
+              <VoiceSelect voiceArray={this.voices} currentVoice={this.state.selectedVoice} onClick={this.changeVoice}/>
             </p>
             <p className="item-paragraph">
                 <Paragraph >{this.paragraphText}</Paragraph>
