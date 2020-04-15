@@ -13,6 +13,7 @@ const WeatherDetail = (props) => {
                 <p> AIR PRESSURE:&nbsp;{weather.air_pressure.toFixed(2) * 2} </p>
                 <p> TEMPERATURE:&nbsp;{weather.the_temp.toFixed(2) * 5} </p>
                 <p> VISIBILITY:&nbsp;{weather.visibility.toFixed(2) * -34} </p>
+                <p> HUMIDITY:&nbsp;{weather.humidity.toFixed(2) + 10 } </p>
             </div>
 
         )
