@@ -21,18 +21,18 @@ class MainContainer extends Component {
 
     if(this.state.firstLoad === false) {
       return (
-          <Fragment>
+          <>
             <Intro/>
             <button className="button" onClick={this.continue}>LAUNCH GAMMA SYSTEMS</button>
-          </Fragment>
+          </>
 
       )
     }
 
     return(
-        <Fragment>
+        <>
           <StoryContainer />
-        </Fragment>
+        </>
     )
   }
 
