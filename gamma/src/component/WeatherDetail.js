@@ -9,10 +9,11 @@ const WeatherDetail = (props) => {
     const listItems = props.weatherItems.consolidated_weather.map(weather => {
         return (
             <div>
-                <p> WIND SPEED:&nbsp;{weather.wind_speed.toFixed(2) * 3.54} m/ph </p>
-                <p> AIR PRESSURE:&nbsp;{weather.air_pressure.toFixed(2) * 2} hPa </p>
-                <p> TEMPERATURE:&nbsp;{weather.the_temp.toFixed(2) * 5}  °C</p>
-                <p> VISIBILITY:&nbsp;{weather.visibility.toFixed(2) * -34} nm</p>
+                <p> WIND SPEED:&nbsp;{weather.wind_speed.toFixed(2) * 3} </p>
+                <p> AIR PRESSURE:&nbsp;{weather.air_pressure.toFixed(2) * 2} </p>
+                <p> TEMPERATURE:&nbsp;{weather.the_temp.toFixed(2) * 5} </p>
+                <p> VISIBILITY:&nbsp;{weather.visibility.toFixed(2) * -34} </p>
+                <p> HUMIDITY:&nbsp;{weather.humidity.toFixed(2) * + 10 } </p>
             </div>
 
         )
