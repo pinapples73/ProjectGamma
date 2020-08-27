@@ -19,7 +19,7 @@ const VoiceSelect = (props) => {
         name = name.replace(" -", "")
 
         return (
-            <button className="button2" key={index} value={index} onClick={handleClick}>{name}</button>
+            <p><button className="button2" key={index} value={index} onClick={handleClick}>{name}</button></p>
         )
     })
 
