@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import StoryContainer from "./StoryContainer";
-import Intro from "../component/IntroScreen"
+import Intro from "../components/IntroScreen"
 
 
 class MainContainer extends Component {

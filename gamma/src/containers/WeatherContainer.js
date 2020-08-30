@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WeatherDetail from '../component/WeatherDetail';
+import WeatherDetail from '../components/WeatherDetail';
 
 
 class WeatherContainer extends Component {

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Paragraph from "../component/Paragraph";
+import Paragraph from "../components/Paragraph";
 import storyContent from "../inkfiles/story";
-import Choices from "../component/Choices";
-import SpeechRecogniser from "../component/SpeechRecogniser";
-import NavBar from "../component/NavBar";
-import VoiceSelect from "../component/VoiceSelect";
+import Choices from "../components/Choices";
+import SpeechRecogniser from "../components/SpeechRecogniser";
+import NavBar from "../components/NavBar";
+import VoiceSelect from "../components/VoiceSelect";
 import WeatherContainer from "./WeatherContainer";
 
 const Story = require('inkjs').Story;
